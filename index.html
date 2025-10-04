@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>k0mraidhost - Premium Web Hosting Since 2021</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.    <title>k0mraidhost - Premium Web Hosting Since 2021</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
         
         * {
             margin: 0;
@@ -14,45 +14,64 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --bg-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --card-gradient: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background: #000;
+            background: var(--bg-gradient);
             color: #fff;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         
-        /* Force dark mode always */
+        /* Enhanced dark mode */
         @media (prefers-color-scheme: light) {
             body {
-                background: #000;
+                background: var(--bg-gradient);
                 color: #fff;
             }
+        }ff;
+            }
         }
-        
-        .mono {
+          .mono {
             font-family: 'JetBrains Mono', monospace;
         }
         
-        /* Premium Button - Primary Style */
+        /* Enhanced Premium Buttons */
         .premium-btn {
             position: relative;
             font-family: inherit;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 14px;
-            letter-spacing: 0.05em;
-            border-radius: 0.6em;
+            letter-spacing: 0.02em;
+            border-radius: 12px;
             cursor: pointer;
-            border: 2px solid #fff;
-            background: #fff;
-            color: #000;
+            border: none;
+            background: var(--primary-gradient);
+            color: #fff;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+            transform: translateY(0);
         }
         
-        .premium-btn svg {
-            width: 1.2em;
-            height: 1.2em;
-            margin-right: 0.5em;
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
         }
         
         .premium-btn span {
@@ -60,59 +79,60 @@
             z-index: 10;
             display: inline-flex;
             align-items: center;
-            padding: 0.6em 1.4em;
-            transition: color 0.4s;
+            padding: 0.8em 2em;
+            transition: all 0.4s ease;
         }
         
-        .premium-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -10%;
-            width: 120%;
-            height: 100%;
-            background: #000;
-            transform: skew(30deg) translate3d(-100%, 0, 0);
-            transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-            z-index: 0;
+        .premium-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 64px rgba(102, 126, 234, 0.4);
         }
         
         .premium-btn:hover::before {
-            transform: skew(30deg) translate3d(0, 0, 0);
-        }
-        
-        .premium-btn:hover span {
-            color: #fff;
+            opacity: 1;
         }
         
         .premium-btn:active {
-            transform: scale(0.95);
+            transform: translateY(-1px);
         }
         
-        /* Hero Buttons - Larger */
+        /* Hero Buttons - Enhanced */
         .hero-btn {
-            font-size: 18px;
-            border-radius: 0.8em;
+            font-size: 16px;
+            border-radius: 14px;
         }
         
         .hero-btn span {
-            padding: 0.8em 1.8em;
+            padding: 1em 2.5em;
         }
         
-        /* Secondary Button */
+        /* Secondary Button - Enhanced */
         .secondary-btn {
             position: relative;
             font-family: inherit;
-            font-weight: 500;
-            font-size: 18px;
-            letter-spacing: 0.05em;
-            border-radius: 0.8em;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.02em;
+            border-radius: 14px;
             cursor: pointer;
-            border: 2px solid #444;
-            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
             color: #fff;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+        
+        .secondary-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
         
         .secondary-btn span {
@@ -120,226 +140,457 @@
             z-index: 10;
             display: inline-flex;
             align-items: center;
-            padding: 0.8em 1.8em;
-            transition: color 0.4s;
-        }
-        
-        .secondary-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -10%;
-            width: 120%;
-            height: 100%;
-            background: #fff;
-            transform: skew(30deg) translate3d(-100%, 0, 0);
-            transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-            z-index: 0;
-        }
-        
-        .secondary-btn:hover::before {
-            transform: skew(30deg) translate3d(0, 0, 0);
-        }
-        
-        .secondary-btn:hover span {
-            color: #000;
+            padding: 1em 2.5em;
+            transition: all 0.4s ease;
         }
         
         .secondary-btn:hover {
-            border-color: #fff;
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .secondary-btn:hover::before {
+            opacity: 1;
+        }         border-color: #fff;
         }
         
         .secondary-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.95);        
+        /* Enhanced Cards */
+        .card {
+            background: var(--card-gradient);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
         
-        .card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
         
         .card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15);
         }
         
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Enhanced Animations */
         .fade-in {
-            animation: fadeIn 1s ease-out forwards;
+            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             opacity: 0;
         }
         
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
         
-        .fade-in {
-            transform: translateY(30px);
+        .slide-in-left {
+            animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
         }
         
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
         
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
+            }
+        }  transform: translateY(30px);        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* Enhanced Background */
         .grid-bg {
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 80px 80px;
+                radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 400px 400px, 400px 400px, 60px 60px, 60px 60px;
+            background-position: 0% 0%, 100% 100%, 0 0, 0 0;
+            animation: backgroundShift 20s ease-in-out infinite;
         }
         
+        @keyframes backgroundShift {
+            0%, 100% { background-position: 0% 0%, 100% 100%, 0 0, 0 0; }
+            50% { background-position: 100% 100%, 0% 0%, 30px 30px, 30px 30px; }
+        }
+        
+        /* Enhanced Navigation */
         nav {
-            backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.4s ease;
         }
         
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .hamburger {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }55, 255, 255, 0.1);        
+        /* Enhanced Stats */
         .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: 3.5rem;
+            font-weight: 900;
             color: #fff;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
         }
         
         @media (max-width: 768px) {
             .stat-number {
-                font-size: 2rem;
-            }
-        }
-        
-        .code-block {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            overflow-x: auto;
-        }
-        
-        .terminal-line {
-            color: #fff;
-            margin: 0.6rem 0;
-            font-size: 0.95rem;
-        }
-        
-        .terminal-prompt {
-            color: #888;
-        }
-        
-        .hero-title {
-            font-size: 5rem;
-            line-height: 1.1;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title {
                 font-size: 2.5rem;
             }
         }
         
+        /* Enhanced Code Block */
+        .code-block {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            overflow-x: auto;
+            position: relative;
+            backdrop-filter: blur(20px);
+        }
+        
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--primary-gradient);
+        }
+        
+        .terminal-line {
+            color: #fff;
+            margin: 0.8rem 0;
+            font-size: 1rem;
+            opacity: 0;
+            animation: typewriter 0.5s ease forwards;
+        }
+        
+        .terminal-line:nth-child(1) { animation-delay: 1s; }
+        .terminal-line:nth-child(2) { animation-delay: 2s; }
+        .terminal-line:nth-child(3) { animation-delay: 3s; }
+        .terminal-line:nth-child(4) { animation-delay: 4s; }
+        
+        @keyframes typewriter {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .terminal-prompt {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        /* Enhanced Typography */
+        .hero-title {
+            font-size: 5.5rem;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 60px rgba(255, 255, 255, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Enhanced Feature Icons */
         .feature-icon {
-            width: 3rem;
-            height: 3rem;
-            background: #fff;
-            border-radius: 12px;
+            width: 4rem;
+            height: 4rem;
+            background: var(--primary-gradient);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
         }
         
         .card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.15) rotate(-5deg);
+            box-shadow: 0 16px 48px rgba(102, 126, 234, 0.5);
         }
         
+        /* Enhanced Logo */
         .logo-square {
-            width: 2rem;
-            height: 2rem;
-            background: #fff;
-            border-radius: 6px;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary-gradient);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-square::before {
+            content: '⚡';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: #fff;
         }
         
         .section-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         @media (max-width: 768px) {
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
         }
         
+        /* Enhanced Divider */
         .minimal-divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3), transparent);
+            position: relative;
+        }
+        
+        .minimal-divider::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 5px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        } background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
         }
     </style>
-</head>
-<body>
-    <!-- Navigation -->
+<    <!-- Navigation -->
     <nav class="fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-3">
-                    <div class="logo-square"></div>
-                    <span class="text-xl font-semibold mono tracking-tight">k0mraidhost</span>
+                    <div class="logo-square pulse-glow"></div>
+                    <span class="text-xl font-bold mono tracking-tight">k0mraidhost</span>
                 </div>
-                <div class="hidden md:flex space-x-10 text-sm font-medium">
-                    <a href="#features" class="text-gray-400 hover:text-white transition">Features</a>
-                    <a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a>
-                    <a href="#docs" class="text-gray-400 hover:text-white transition">Docs</a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-10 text-sm font-semibold">
+                    <a href="#features" class="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105">Features</a>
+                    <a href="#pricing" class="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105">Pricing</a>
+                    <a href="#testimonials" class="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105">Reviews</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105">Contact</a>
                 </div>
-                <button class="premium-btn">
-                    <span>Get Started</span>
+                
+                <!-- Desktop CTA -->
+                <div class="hidden md:block">
+                    <button class="premium-btn">
+                        <span><i class="fas fa-rocket mr-2"></i>Get Started</span>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="hamburger" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu md:hidden fixed top-20 right-0 w-full h-screen bg-black bg-opacity-95 backdrop-blur-lg">
+            <div class="flex flex-col items-center justify-center h-full space-y-8">
+                <a href="#features" class="text-2xl text-gray-300 hover:text-white transition-all duration-300" onclick="toggleMobileMenu()">Features</a>
+                <a href="#pricing" class="text-2xl text-gray-300 hover:text-white transition-all duration-300" onclick="toggleMobileMenu()">Pricing</a>
+                <a href="#testimonials" class="text-2xl text-gray-300 hover:text-white transition-all duration-300" onclick="toggleMobileMenu()">Reviews</a>
+                <a href="#contact" class="text-2xl text-gray-300 hover:text-white transition-all duration-300" onclick="toggleMobileMenu()">Contact</a>
+                <button class="premium-btn hero-btn mt-8" onclick="toggleMobileMenu()">
+                    <span><i class="fas fa-rocket mr-2"></i>Get Started</span>
                 </button>
             </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center grid-bg pt-20">
+    </nav> </div>
+        </di    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center grid-bg pt-20 overflow-hidden">
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20 float-animation"></div>
+        <div class="absolute top-40 right-20 w-32 h-32 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-15 float-animation" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-40 left-20 w-16 h-16 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-25 float-animation" style="animation-delay: -4s;"></div>
+        
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-32 relative z-10">
             <div class="text-center">
                 <div class="fade-in delay-1">
-                    <span class="mono text-xs tracking-wider text-gray-400 border border-gray-800 px-4 py-2 rounded-full inline-block mb-8">
+                    <span class="mono text-xs tracking-wider text-gray-400 border border-gray-700 px-6 py-3 rounded-full inline-flex items-center mb-8 backdrop-blur-sm bg-white bg-opacity-5">
+                        <i class="fas fa-certificate mr-2 text-blue-400"></i>
                         TRUSTED SINCE 2021
                     </span>
                 </div>
                 <h1 class="hero-title mb-8 fade-in delay-2">
-                    Infrastructure for<br/>developers who ship
+                    Infrastructure for<br/><span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">developers who ship</span>
                 </h1>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 fade-in delay-3 leading-relaxed">
-                    Lightning-fast hosting with 99.99% uptime. Deploy your apps in seconds with our developer-first platform.
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-12 fade-in delay-3 leading-relaxed">
+                    Lightning-fast hosting with <span class="text-blue-400 font-semibold">99.99% uptime</span>. Deploy your apps in seconds with our developer-first platform that scales with your ambitions.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in delay-4">
+                <div class="flex flex-col sm:flex-row gap-6 justify-center fade-in delay-4">
                     <button class="premium-btn hero-btn">
-                        <span>Start Building</span>
+                        <span><i class="fas fa-rocket mr-2"></i>Start Building</span>
                     </button>
-                    <button class="premium-btn hero-btn">
-                        <span>View Documentation</span>
+                    <button class="secondary-btn">
+                        <span><i class="fas fa-play mr-2"></i>Watch Demo</span>
                     </button>
                 </div>
                 
-                <!-- Code Block -->
-                <div class="mt-16 max-w-3xl mx-auto fade-in delay-4">
+                <!-- Enhanced Code Block -->
+                <div class="mt-20 max-w-4xl mx-auto fade-in delay-4">
                     <div class="code-block mono text-sm text-left">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <span class="text-xs text-gray-500">Terminal</span>
+                        </div>
                         <div class="terminal-line"><span class="terminal-prompt">$</span> npm install -g k0mraid-cli</div>
-                        <div class="terminal-line"><span class="terminal-prompt">$</span> k0mraid init my-app</div>
-                        <div class="terminal-line"><span class="terminal-prompt">$</span> k0mraid deploy</div>
-                        <div class="text-gray-500 mt-3 text-xs">✓ Deployed to production in 8.2s</div>
+                        <div class="terminal-line"><span class="terminal-prompt">$</span> k0mraid init my-awesome-app</div>
+                        <div class="terminal-line"><span class="terminal-prompt">$</span> k0mraid deploy --production</div>
+                        <div class="text-green-400 mt-4 text-sm flex items-center">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            ✓ Deployed to production in 8.2s
+                            <span class="ml-4 text-blue-400">🚀 https://my-awesome-app.k0mraid.dev</span>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Trusted by Section -->
+                <div class="mt-16 fade-in delay-4">
+                    <p class="text-sm text-gray-500 mb-6">Trusted by developers at</p>
+                    <div class="flex flex-wrap justify-center items-center gap-8 opacity-50">
+                        <div class="px-4 py-2 bg-white bg-opacity-10 rounded-lg backdrop-blur-sm">
+                            <span class="font-bold text-sm">Startup Inc.</span>
+                        </div>
+                        <div class="px-4 py-2 bg-white bg-opacity-10 rounded-lg backdrop-blur-sm">
+                            <span class="font-bold text-sm">DevCorp</span>
+                        </div>
+                        <div class="px-4 py-2 bg-white bg-opacity-10 rounded-lg backdrop-blur-sm">
+                            <span class="font-bold text-sm">TechFlow</span>
+                        </div>
+                        <div class="px-4 py-2 bg-white bg-opacity-10 rounded-lg backdrop-blur-sm">
+                            <span class="font-bold text-sm">InnovateLab</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>>
             </div>
         </div>
     </section>
@@ -366,72 +617,338 @@
                     <div class="text-gray-500 text-sm tracking-wide">Support</div>
                 </div>
             </div>
-            <div class="minimal-divider mt-16"></div>
+            <div class="minimal-divider mt-    <!-- Features Section -->
+    <section id="features" class="py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-24">
+                <h2 class="section-title mb-8">Built for developers</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Everything you need to scale from prototype to production with enterprise-grade reliability</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card p-8 rounded-2xl group">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-blue-400 transition-colors">Lightning Deploy</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">Deploy your apps in seconds with our optimized CI/CD pipeline. Git push and go live instantly.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Zero-downtime deployments</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Automatic rollbacks</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Preview branches</li>
+                    </ul>
+                </div>
+                
+                <div class="card p-8 rounded-2xl group">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-purple-400 transition-colors">Enterprise Security</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">Auto SSL, DDoS protection, and SOC 2 compliance built-in. Your data stays secure always.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>SSL certificates</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>DDoS protection</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>SOC 2 compliance</li>
+                    </ul>
+                </div>
+                
+                <div class="card p-8 rounded-2xl group">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-pink-400 transition-colors">Real-time Analytics</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">Monitor performance, track errors, and optimize with detailed metrics and insights.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Performance metrics</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Error tracking</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Custom dashboards</li>
+                    </ul>
+                </div>
+                
+                <div class="card p-8 rounded-2xl group">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-cyan-400 transition-colors">Global CDN</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">Edge locations worldwide ensure your content loads fast for users everywhere on earth.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>200+ edge locations</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Smart routing</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Image optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="card p-8 rounded-2xl group">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-yellow-400 transition-colors">Full Stack Support</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">Node.js, Python, PHP, Go, Ruby, and more. Deploy any language, any framework seamlessly.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>20+ languages</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Popular frameworks</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Docker support</li>
+                    </ul>
+                </div>
+                
+                <div class="card p-8 rounded-2xl group">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-indigo-400 transition-colors">Expert Support</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">24/7 support from engineers who actually understand your stack and challenges deeply.</p>                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>24/7 availability</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Expert engineers</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Priority support</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-32">
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 relative">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-20">
-                <h2 class="section-title mb-6">Built for developers</h2>
-                <p class="text-xl text-gray-400">Everything you need to scale from prototype to production</p>
+                <h2 class="section-title mb-8">Simple, transparent pricing</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Scale as you grow. No hidden fees, no surprises. Start free and upgrade when you're ready.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter Plan -->
+                <div class="card p-8 rounded-3xl relative overflow-hidden">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">Starter</h3>
+                        <div class="mb-6">
+                            <span class="text-5xl font-black">$0</span>
+                            <span class="text-gray-400">/month</span>
+                        </div>
+                        <p class="text-gray-400 mb-8">Perfect for side projects and learning</p>
+                        <button class="w-full premium-btn mb-8">
+                            <span>Start Free</span>
+                        </button>
+                        <ul class="space-y-4 text-left">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>3 Projects</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>100GB Bandwidth</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>Basic Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>Community Access</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="card p-8 rounded-3xl relative overflow-hidden transform scale-105 border-2 border-blue-500">
+                    <div class="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        MOST POPULAR
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">Pro</h3>
+                        <div class="mb-6">
+                            <span class="text-5xl font-black bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">$29</span>
+                            <span class="text-gray-400">/month</span>
+                        </div>
+                        <p class="text-gray-400 mb-8">For growing businesses and teams</p>
+                        <button class="w-full premium-btn mb-8 pulse-glow">
+                            <span>Start Pro Trial</span>
+                        </button>
+                        <ul class="space-y-4 text-left">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>Unlimited Projects</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>1TB Bandwidth</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>Priority Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>Advanced Analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>Custom Domains</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="card p-8 rounded-3xl relative overflow-hidden">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+                        <div class="mb-6">
+                            <span class="text-5xl font-black">$99</span>
+                            <span class="text-gray-400">/month</span>
+                        </div>
+                        <p class="text-gray-400 mb-8">For large teams and organizations</p>
+                        <button class="w-full secondary-btn mb-8">
+                            <span>Contact Sales</span>
+                        </button>
+                        <ul class="space-y-4 text-left">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>Unlimited Everything</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>10TB Bandwidth</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>24/7 Phone Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>SLA Guarantee</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-3"></i>
+                                <span>Dedicated Manager</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="section-title mb-8">Loved by developers worldwide</h2>
+                <p class="text-xl text-gray-400">Join thousands of satisfied developers building amazing things</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">FAST</div>
-                    <h3 class="text-2xl font-bold mb-4">Lightning Deploy</h3>
-                    <p class="text-gray-400 leading-relaxed">Deploy your apps in seconds with our optimized CI/CD pipeline. Git push and go live.</p>
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-white">SA</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sarah Anderson</h4>
+                            <p class="text-sm text-gray-500">Senior Developer at TechCorp</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">"k0mraidhost completely transformed our deployment process. What used to take hours now takes seconds. The developer experience is absolutely phenomenal."</p>
                 </div>
                 
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">LOCK</div>
-                    <h3 class="text-2xl font-bold mb-4">Enterprise Security</h3>
-                    <p class="text-gray-400 leading-relaxed">Auto SSL, DDoS protection, and SOC 2 compliance built-in. Your data stays secure.</p>
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-white">MR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Marcus Rodriguez</h4>
+                            <p class="text-sm text-gray-500">CTO at StartupLab</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">"The uptime and performance are incredible. We've had zero downtime since switching to k0mraidhost. Their support team is also top-notch."</p>
                 </div>
                 
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">DATA</div>
-                    <h3 class="text-2xl font-bold mb-4">Real-time Analytics</h3>
-                    <p class="text-gray-400 leading-relaxed">Monitor performance, track errors, and optimize with detailed metrics and logs.</p>
-                </div>
-                
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">CDN</div>
-                    <h3 class="text-2xl font-bold mb-4">Global CDN</h3>
-                    <p class="text-gray-400 leading-relaxed">Edge locations worldwide ensure your content loads fast for users everywhere.</p>
-                </div>
-                
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">CODE</div>
-                    <h3 class="text-2xl font-bold mb-4">Full Stack Support</h3>
-                    <p class="text-gray-400 leading-relaxed">Node.js, Python, PHP, Go, Ruby, and more. Deploy any language, any framework.</p>
-                </div>
-                
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">24/7</div>
-                    <h3 class="text-2xl font-bold mb-4">Expert Support</h3>
-                    <p class="text-gray-400 leading-relaxed">24/7 support from engineers who actually understand your stack and challenges.</p>
+                <div class="card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-white">EL</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Emily Liu</h4>
+                            <p class="text-sm text-gray-500">Full-stack Developer</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">"As a freelancer, k0mraidhost gives me the confidence to deliver professional-grade applications to my clients. The free tier is perfect for prototyping."</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- CTA Section -->
+    </section>        <!-- Enhanced CTA Section -->
     <section class="py-32 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
-            <h2 class="section-title mb-6">Ready to ship faster?</h2>
-            <p class="text-xl text-gray-400 mb-12 leading-relaxed">Join thousands of developers building the future on k0mraidhost</p>
-            <button class="premium-btn hero-btn">
-                <span>
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                        <path d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"/>
-                    </svg>
-                    Start Free Trial
-                </span>
-            </button>
-            <p class="text-sm text-gray-600 mt-6">No credit card required • Free tier available</p>
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20"></div>
+        <div class="absolute top-10 right-10 w-40 h-40 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full opacity-10 float-animation"></div>
+        <div class="absolute bottom-20 left-10 w-60 h-60 bg-gradient-to-r from-purple-400 to-pink-600 rounded-full opacity-10 float-animation" style="animation-delay: -3s;"></div>
+        
+        <div class="max-w-5xl mx-auto px-6 lg:px-8 text-center relative z-10">
+            <h2 class="section-title mb-8">Ready to ship faster?</h2>
+            <p class="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+                Join <span class="text-blue-400 font-semibold">50,000+</span> developers building the future on k0mraidhost. 
+                Start your free trial today and experience the difference.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+                <button class="premium-btn hero-btn pulse-glow">
+                    <span>
+                        <i class="fas fa-rocket mr-2"></i>
+                        Start Free Trial
+                    </span>
+                </button>
+                <button class="secondary-btn">
+                    <span>
+                        <i class="fas fa-calendar mr-2"></i>
+                        Schedule Demo
+                    </span>
+                </button>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mt-16">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-check text-white text-xl"></i>
+                    </div>
+                    <p class="text-gray-400">No credit card required</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-white text-xl"></i>
+                    </div>
+                    <p class="text-gray-400">5-minute setup</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-white text-xl"></i>
+                    </div>
+                    <p class="text-gray-400">Expert support included</p>
+                </div>
+            </div>
+        </div>
+    </section>red • Free tier available</p>
         </div>
     </section>
 
@@ -475,12 +992,16 @@
                 </div>
             </div>
             <div class="border-t border-gray-900 pt-8 text-center text-gray-600 text-sm">
-                <p>© 2025 k0mraidhost. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+                <p>© 2025 k    <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        }
 
-    <script>
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -492,22 +1013,23 @@
             });
         });
 
-        // Navbar background on scroll
+        // Enhanced navbar background on scroll
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 nav.style.background = 'rgba(0, 0, 0, 0.95)';
-                nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.15)';
+                nav.style.borderBottom = '1px solid rgba(102, 126, 234, 0.3)';
+                nav.style.backdropFilter = 'blur(30px)';
             } else {
-                nav.style.background = 'rgba(0, 0, 0, 0.8)';
-                nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+                nav.style.background = 'rgba(0, 0, 0, 0.9)';
+                nav.style.borderBottom = '1px solid rgba(102, 126, 234, 0.2)';
             }
         });
 
-        // Intersection Observer for fade-in animations
+        // Enhanced intersection observer for animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -80px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -515,14 +1037,137 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    
+                    // Add staggered animation for cards
+                    if (entry.target.classList.contains('card')) {
+                        const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100;
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, delay);
+                    }
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        // Observe all cards and animated elements
+        document.querySelectorAll('.card, .fade-in').forEach(element => {
+            if (!element.classList.contains('delay-1') && !element.classList.contains('delay-2') && 
+                !element.classList.contains('delay-3') && !element.classList.contains('delay-4')) {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                observer.observe(element);
+            }
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.float-animation');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add hover effects to buttons
+        document.querySelectorAll('.premium-btn, .secondary-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click ripple effect
+        document.querySelectorAll('.premium-btn, .secondary-btn, .card').forEach(element => {
+            element.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('ripple');
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS animation for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                const isUptime = target.includes('%');
+                const isTime = target.includes('ms') || target.includes('/');
+                
+                if (!isUptime && !isTime) {
+                    let count = 0;
+                    const targetNum = parseFloat(target.replace(/[^\d.]/g, ''));
+                    const suffix = target.replace(/[\d.]/g, '');
+                    const increment = targetNum / 100;
+                    
+                    const timer = setInterval(() => {
+                        count += increment;
+                        if (count >= targetNum) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(count) + suffix;
+                        }
+                    }, 20);
+                }
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsSection = document.querySelector('.stat-number').closest('section');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            statsObserver.observe(statsSection);
+        }
+    </script>      card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(card);
         });
     </script>
