@@ -3,527 +3,872 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>k0mraidhost - Premium Web Hosting Since 2021</title>
+    <meta name="description" content="k0mraidhost - Premium web hosting for developers. Lightning-fast deployment, 99.99% uptime, and enterprise security.">
+    <title>k0mraidhost - Premium Web Hosting for Developers</title>
+    
+    <!-- External Resources -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-        
+        /* CSS Variables */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-subtle: #334155;
+        }
+
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
             overflow-x: hidden;
         }
-        
-        /* Force dark mode always */
-        @media (prefers-color-scheme: light) {
-            body {
-                background: #000;
-                color: #fff;
-            }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
-        
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        /* Premium Button - Primary Style */
-        .premium-btn {
-            position: relative;
-            font-family: inherit;
-            font-weight: 500;
-            font-size: 14px;
-            letter-spacing: 0.05em;
-            border-radius: 0.6em;
-            cursor: pointer;
-            border: 2px solid #fff;
-            background: #fff;
-            color: #000;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .premium-btn svg {
-            width: 1.2em;
-            height: 1.2em;
-            margin-right: 0.5em;
-        }
-        
-        .premium-btn span {
-            position: relative;
-            z-index: 10;
+
+        .btn {
             display: inline-flex;
             align-items: center;
-            padding: 0.6em 1.4em;
-            transition: color 0.4s;
-        }
-        
-        .premium-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -10%;
-            width: 120%;
-            height: 100%;
-            background: #000;
-            transform: skew(30deg) translate3d(-100%, 0, 0);
-            transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-            z-index: 0;
-        }
-        
-        .premium-btn:hover::before {
-            transform: skew(30deg) translate3d(0, 0, 0);
-        }
-        
-        .premium-btn:hover span {
-            color: #fff;
-        }
-        
-        .premium-btn:active {
-            transform: scale(0.95);
-        }
-        
-        /* Hero Buttons - Larger */
-        .hero-btn {
-            font-size: 18px;
-            border-radius: 0.8em;
-        }
-        
-        .hero-btn span {
-            padding: 0.8em 1.8em;
-        }
-        
-        /* Secondary Button */
-        .secondary-btn {
-            position: relative;
-            font-family: inherit;
-            font-weight: 500;
-            font-size: 18px;
-            letter-spacing: 0.05em;
-            border-radius: 0.8em;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
             cursor: pointer;
-            border: 2px solid #444;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
             background: transparent;
-            color: #fff;
-            overflow: hidden;
+            color: var(--text-light);
+            border: 2px solid var(--border-subtle);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 1000;
             transition: all 0.3s ease;
         }
-        
-        .secondary-btn span {
-            position: relative;
-            z-index: 10;
-            display: inline-flex;
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 0.8em 1.8em;
-            transition: color 0.4s;
+            height: 4rem;
         }
-        
-        .secondary-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -10%;
-            width: 120%;
-            height: 100%;
-            background: #fff;
-            transform: skew(30deg) translate3d(-100%, 0, 0);
-            transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-            z-index: 0;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
         }
-        
-        .secondary-btn:hover::before {
-            transform: skew(30deg) translate3d(0, 0, 0);
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
-        
-        .secondary-btn:hover span {
-            color: #000;
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
         }
-        
-        .secondary-btn:hover {
-            border-color: #fff;
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
-        
-        .secondary-btn:active {
-            transform: scale(0.95);
+
+        .nav-links a:hover {
+            color: var(--text-light);
         }
-        
-        .card {
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 4rem;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 4rem);
+            background: var(--bg-darker);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
         }
-        
-        .card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-8px);
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
         }
-        
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .feature-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+        }
+
+        /* Animations */
         .fade-in {
-            animation: fadeIn 1s ease-out forwards;
             opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
         }
-        
+
         @keyframes fadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
-        .fade-in {
-            transform: translateY(30px);
-        }
-        
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        
-        .grid-bg {
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 80px 80px;
-        }
-        
-        nav {
-            backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #fff;
-        }
-        
+
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .stat-number {
-                font-size: 2rem;
+            .nav-links {
+                display: none;
             }
-        }
-        
-        .code-block {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            overflow-x: auto;
-        }
-        
-        .terminal-line {
-            color: #fff;
-            margin: 0.6rem 0;
-            font-size: 0.95rem;
-        }
-        
-        .terminal-prompt {
-            color: #888;
-        }
-        
-        .hero-title {
-            font-size: 5rem;
-            line-height: 1.1;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-        
-        @media (max-width: 768px) {
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
             .hero-title {
                 font-size: 2.5rem;
             }
-        }
-        
-        .feature-icon {
-            width: 3rem;
-            height: 3rem;
-            background: #fff;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .logo-square {
-            width: 2rem;
-            height: 2rem;
-            background: #fff;
-            border-radius: 6px;
-        }
-        
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-        
-        @media (max-width: 768px) {
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .section-title {
                 font-size: 2rem;
             }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
         }
-        
-        .minimal-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center space-x-3">
-                    <div class="logo-square"></div>
-                    <span class="text-xl font-semibold mono tracking-tight">k0mraidhost</span>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    k0mraidhost
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+                    <a href="#" class="btn btn-primary" style="display: none;">Get Started</a>
+                    
+                    <div class="mobile-menu-btn">
+                        <div class="hamburger"></div>
+                        <div class="hamburger"></div>
+                        <div class="hamburger"></div>
+                    </div>
                 </div>
-                <div class="hidden md:flex space-x-10 text-sm font-medium">
-                    <a href="#features" class="text-gray-400 hover:text-white transition">Features</a>
-                    <a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a>
-                    <a href="#docs" class="text-gray-400 hover:text-white transition">Docs</a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
-                </div>
-                <button class="premium-btn">
-                    <span>Get Started</span>
-                </button>
             </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#" class="btn btn-primary">Get Started</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center grid-bg pt-20">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-32 relative z-10">
-            <div class="text-center">
-                <div class="fade-in delay-1">
-                    <span class="mono text-xs tracking-wider text-gray-400 border border-gray-800 px-4 py-2 rounded-full inline-block mb-8">
-                        TRUSTED SINCE 2021
-                    </span>
-                </div>
-                <h1 class="hero-title mb-8 fade-in delay-2">
-                    Infrastructure for<br/>developers who ship
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title fade-in">
+                    Premium hosting for <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">developers</span>
                 </h1>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 fade-in delay-3 leading-relaxed">
-                    Lightning-fast hosting with 99.99% uptime. Deploy your apps in seconds with our developer-first platform.
+                <p class="hero-subtitle fade-in fade-in-delay-1">
+                    Lightning-fast deployment, 99.99% uptime, and enterprise-grade security. 
+                    Build and deploy your applications with confidence.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in delay-4">
-                    <button class="premium-btn hero-btn">
-                        <span>Start Building</span>
-                    </button>
-                    <button class="premium-btn hero-btn">
-                        <span>View Documentation</span>
-                    </button>
+                <div class="hero-buttons fade-in fade-in-delay-2">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-rocket" style="margin-right: 0.5rem;"></i>
+                        Start Free Trial
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-play" style="margin-right: 0.5rem;"></i>
+                        Watch Demo
+                    </a>
                 </div>
                 
-                <!-- Code Block -->
-                <div class="mt-16 max-w-3xl mx-auto fade-in delay-4">
-                    <div class="code-block mono text-sm text-left">
-                        <div class="terminal-line"><span class="terminal-prompt">$</span> npm install -g k0mraid-cli</div>
-                        <div class="terminal-line"><span class="terminal-prompt">$</span> k0mraid init my-app</div>
-                        <div class="terminal-line"><span class="terminal-prompt">$</span> k0mraid deploy</div>
-                        <div class="text-gray-500 mt-3 text-xs">✓ Deployed to production in 8.2s</div>
+                <!-- Stats -->
+                <div class="stats fade-in fade-in-delay-3">
+                    <div class="stat-item">
+                        <span class="stat-number">99.99%</span>
+                        <span class="stat-label">Uptime SLA</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Developers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">&lt;100ms</span>
+                        <span class="stat-label">Response Time</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-24">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="minimal-divider mb-16"></div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
-                <div class="text-center">
-                    <div class="stat-number mb-2">99.99%</div>
-                    <div class="text-gray-500 text-sm tracking-wide">Uptime SLA</div>
-                </div>
-                <div class="text-center">
-                    <div class="stat-number mb-2">2.5M+</div>
-                    <div class="text-gray-500 text-sm tracking-wide">Deployments</div>
-                </div>
-                <div class="text-center">
-                    <div class="stat-number mb-2">&lt;100ms</div>
-                    <div class="text-gray-500 text-sm tracking-wide">Response Time</div>
-                </div>
-                <div class="text-center">
-                    <div class="stat-number mb-2">24/7</div>
-                    <div class="text-gray-500 text-sm tracking-wide">Support</div>
-                </div>
-            </div>
-            <div class="minimal-divider mt-16"></div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-32">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="section-title mb-6">Built for developers</h2>
-                <p class="text-xl text-gray-400">Everything you need to scale from prototype to production</p>
-            </div>
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Why developers choose us</h2>
+            <p class="section-subtitle">
+                Everything you need to build, deploy, and scale your applications with confidence
+            </p>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">FAST</div>
-                    <h3 class="text-2xl font-bold mb-4">Lightning Deploy</h3>
-                    <p class="text-gray-400 leading-relaxed">Deploy your apps in seconds with our optimized CI/CD pipeline. Git push and go live.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Lightning Deploy</h3>
+                    <p class="feature-description">
+                        Deploy your applications in seconds with our optimized CI/CD pipeline. 
+                        Git push and go live instantly with zero downtime.
+                    </p>
                 </div>
                 
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">LOCK</div>
-                    <h3 class="text-2xl font-bold mb-4">Enterprise Security</h3>
-                    <p class="text-gray-400 leading-relaxed">Auto SSL, DDoS protection, and SOC 2 compliance built-in. Your data stays secure.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Enterprise Security</h3>
+                    <p class="feature-description">
+                        Bank-level security with automatic SSL, DDoS protection, and SOC 2 compliance. 
+                        Your data and applications are always protected.
+                    </p>
                 </div>
                 
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">DATA</div>
-                    <h3 class="text-2xl font-bold mb-4">Real-time Analytics</h3>
-                    <p class="text-gray-400 leading-relaxed">Monitor performance, track errors, and optimize with detailed metrics and logs.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="feature-title">Global CDN</h3>
+                    <p class="feature-description">
+                        200+ edge locations worldwide ensure your content loads fast for users everywhere. 
+                        Automatic image optimization included.
+                    </p>
                 </div>
                 
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">CDN</div>
-                    <h3 class="text-2xl font-bold mb-4">Global CDN</h3>
-                    <p class="text-gray-400 leading-relaxed">Edge locations worldwide ensure your content loads fast for users everywhere.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Analytics</h3>
+                    <p class="feature-description">
+                        Monitor performance, track errors, and optimize with detailed metrics. 
+                        Custom dashboards and alerts keep you informed.
+                    </p>
                 </div>
                 
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">CODE</div>
-                    <h3 class="text-2xl font-bold mb-4">Full Stack Support</h3>
-                    <p class="text-gray-400 leading-relaxed">Node.js, Python, PHP, Go, Ruby, and more. Deploy any language, any framework.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="feature-title">Full Stack Support</h3>
+                    <p class="feature-description">
+                        Support for Node.js, Python, PHP, Go, Ruby, and more. 
+                        Deploy any language or framework with Docker support.
+                    </p>
                 </div>
                 
-                <div class="card p-10 rounded-2xl">
-                    <div class="feature-icon mono text-xs font-bold">24/7</div>
-                    <h3 class="text-2xl font-bold mb-4">Expert Support</h3>
-                    <p class="text-gray-400 leading-relaxed">24/7 support from engineers who actually understand your stack and challenges.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">Expert Support</h3>
+                    <p class="feature-description">
+                        24/7 support from engineers who understand your stack. 
+                        Get help when you need it from people who actually code.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-32 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
-            <h2 class="section-title mb-6">Ready to ship faster?</h2>
-            <p class="text-xl text-gray-400 mb-12 leading-relaxed">Join thousands of developers building the future on k0mraidhost</p>
-            <button class="premium-btn hero-btn">
-                <span>
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                        <path d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"/>
-                    </svg>
-                    Start Free Trial
-                </span>
-            </button>
-            <p class="text-sm text-gray-600 mt-6">No credit card required • Free tier available</p>
+    <!-- Pricing Section -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2 class="section-title">Simple, transparent pricing</h2>
+            <p class="section-subtitle">
+                Start free and scale as you grow. No hidden fees, no surprises.
+            </p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Starter</h3>
+                    <div class="pricing-price">$0</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>3 Projects</li>
+                        <li>100GB Bandwidth</li>
+                        <li>Basic Support</li>
+                        <li>Community Access</li>
+                        <li>SSL Certificates</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3 class="pricing-title">Pro</h3>
+                    <div class="pricing-price">$29</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited Projects</li>
+                        <li>1TB Bandwidth</li>
+                        <li>Priority Support</li>
+                        <li>Advanced Analytics</li>
+                        <li>Custom Domains</li>
+                        <li>Team Collaboration</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <div class="pricing-price">$99</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited Everything</li>
+                        <li>10TB+ Bandwidth</li>
+                        <li>24/7 Phone Support</li>
+                        <li>SLA Guarantee</li>
+                        <li>Dedicated Manager</li>
+                        <li>Custom Integration</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%;">Contact Sales</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-900 py-16">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="logo-square"></div>
-                        <span class="text-lg font-semibold mono">k0mraidhost</span>
-                    </div>
-                    <p class="text-gray-500 text-sm leading-relaxed">Premium web hosting for developers since 2021.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-sm tracking-wide">PRODUCT</h4>
-                    <ul class="space-y-3 text-gray-500 text-sm">
-                        <li><a href="#" class="hover:text-white transition">Features</a></li>
-                        <li><a href="#" class="hover:text-white transition">Pricing</a></li>
-                        <li><a href="#" class="hover:text-white transition">Documentation</a></li>
-                        <li><a href="#" class="hover:text-white transition">API</a></li>
-                    </ul>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-sm tracking-wide">COMPANY</h4>
-                    <ul class="space-y-3 text-gray-500 text-sm">
-                        <li><a href="#" class="hover:text-white transition">About</a></li>
-                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
-                    </ul>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Community</a>
+                    <a href="#">Status Page</a>
+                    <a href="#">Bug Reports</a>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-sm tracking-wide">LEGAL</h4>
-                    <ul class="space-y-3 text-gray-500 text-sm">
-                        <li><a href="#" class="hover:text-white transition">Privacy</a></li>
-                        <li><a href="#" class="hover:text-white transition">Terms</a></li>
-                        <li><a href="#" class="hover:text-white transition">Security</a></li>
-                        <li><a href="#" class="hover:text-white transition">SLA</a></li>
-                    </ul>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Security</a>
+                    <a href="#">SLA</a>
                 </div>
             </div>
-            <div class="border-t border-gray-900 pt-8 text-center text-gray-600 text-sm">
-                <p>© 2025 k0mraidhost. All rights reserved.</p>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 k0mraidhost. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for navigation links
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const hamburgers = document.querySelectorAll('.hamburger');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            
+            // Animate hamburger
+            hamburgers.forEach((line, index) => {
+                if (mobileMenu.classList.contains('active')) {
+                    if (index === 0) line.style.transform = 'rotate(45deg) translate(8px, 8px)';
+                    if (index === 1) line.style.opacity = '0';
+                    if (index === 2) line.style.transform = 'rotate(-45deg) translate(8px, -8px)';
+                } else {
+                    line.style.transform = '';
+                    line.style.opacity = '1';
+                }
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                hamburgers.forEach(line => {
+                    line.style.transform = '';
+                    line.style.opacity = '1';
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
         // Navbar background on scroll
-        const nav = document.querySelector('nav');
+        const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(0, 0, 0, 0.95)';
-                nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.15)';
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(2, 6, 23, 0.95)';
             } else {
-                nav.style.background = 'rgba(0, 0, 0, 0.8)';
-                nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+                navbar.style.background = 'rgba(2, 6, 23, 0.9)';
             }
         });
 
-        // Intersection Observer for fade-in animations
+        // Show desktop CTA button on larger screens
+        function updateNavButton() {
+            const ctaButton = document.querySelector('.nav-actions .btn');
+            if (window.innerWidth >= 768) {
+                ctaButton.style.display = 'inline-flex';
+            } else {
+                ctaButton.style.display = 'none';
+            }
+        }
+
+        updateNavButton();
+        window.addEventListener('resize', updateNavButton);
+
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -80px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.animationPlayState = 'running';
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(card);
+        // Observe all elements with fade-in animation
+        document.querySelectorAll('.fade-in, .feature-card, .pricing-card').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
