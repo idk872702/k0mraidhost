@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="k0mraidhost - Premium web hosting for developers. Lightning-fast deployment, 99.99% uptime, and enterprise security.">
-    <title>k0mraidhost - Premium Web Hosting Since 2021</title>
+    <title>k0mraidhost - Premium Web Hosting for Developers</title>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS -->
+    <!-- External Resources -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Custom Styles -->
     <style>
         /* CSS Variables */
         :root {
-            --primary: #667eea;
-            --primary-dark: #5a6fd8;
-            --secondary: #764ba2;
-            --accent: #4facfe;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-subtle: #334155;
         }
 
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -36,902 +36,821 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1e1e3f 100%);
-            color: #ffffff;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--border-subtle);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
         }
 
         /* Navigation */
         .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(2, 6, 23, 0.9);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(15, 15, 35, 0.9);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 1000;
             transition: all 0.3s ease;
         }
 
-        .navbar.scrolled {
-            background: rgba(15, 15, 35, 0.95);
-            border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
         }
 
-        /* Mobile menu */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
         .mobile-menu {
-            transform: translateX(100%);
+            position: fixed;
+            top: 4rem;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 4rem);
+            background: var(--bg-darker);
+            transform: translateX(-100%);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            z-index: 999;
         }
 
         .mobile-menu.active {
             transform: translateX(0);
         }
 
-        .hamburger {
-            cursor: pointer;
+        .mobile-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 24px;
-            height: 18px;
-        }
-
-        .hamburger span {
-            height: 2px;
-            width: 100%;
-            background: white;
-            transition: all 0.3s ease;
-            transform-origin: center;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        /* Cards */
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(102, 126, 234, 0.3);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15);
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
         }
 
-        .card::before {
-            content: '';
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .feature-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
-        .card:hover::before {
-            opacity: 1;
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
-        .card > * {
-            position: relative;
-            z-index: 1;
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
         }
 
         /* Animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
         }
 
-        .fade-in.delay-1 { animation-delay: 0.1s; }
-        .fade-in.delay-2 { animation-delay: 0.2s; }
-        .fade-in.delay-3 { animation-delay: 0.3s; }
-        .fade-in.delay-4 { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* Grid background */
-        .grid-bg {
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
 
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Code block */
-        .code-block {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 12px;
-            padding: 24px;
-            font-family: 'JetBrains Mono', monospace;
-            position: relative;
-            overflow-x: auto;
-        }
-
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-        }
-
-        .terminal-line {
-            margin: 8px 0;
-            opacity: 0;
-            animation: typeIn 0.5s ease forwards;
-        }
-
-        .terminal-line:nth-child(1) { animation-delay: 0.5s; }
-        .terminal-line:nth-child(2) { animation-delay: 1s; }
-        .terminal-line:nth-child(3) { animation-delay: 1.5s; }
-
-        @keyframes typeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .prompt {
-            color: var(--primary);
-        }
-
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem !important;
-                line-height: 1.2;
-            }
-            
-            .section-title {
-                font-size: 2rem !important;
-            }
-            
-            .card {
-                padding: 24px;
-            }
-            
-            .code-block {
-                padding: 16px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero-title {
-                font-size: 2rem !important;
-            }
-            
-            .section-title {
-                font-size: 1.75rem !important;
-            }
-            
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                justify-content: center;
-                margin-bottom: 12px;
-            }
-        }
-
-        /* Floating elements */
-        .float-element {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .float-element:nth-child(2) { animation-delay: -2s; }
-        .float-element:nth-child(3) { animation-delay: -4s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Hide floating elements on mobile */
-        @media (max-width: 768px) {
-            .float-element {
+            .nav-links {
                 display: none;
             }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
         }
 
-        /* Stats */
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
 
-        @media (max-width: 768px) {
             .stat-number {
                 font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar fixed w-full top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-bolt text-white text-sm"></i>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <span class="text-xl font-bold mono">k0mraidhost</span>
-                </div>
-
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a>
-                    <a href="#pricing" class="text-gray-300 hover:text-white transition-colors">Pricing</a>
-                    <a href="#testimonials" class="text-gray-300 hover:text-white transition-colors">Reviews</a>
-                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
-                </div>
-
-                <!-- Desktop CTA -->
-                <div class="hidden md:block">
-                    <a href="#" class="btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Get Started
-                    </a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <div class="hamburger" onclick="toggleMobileMenu()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    k0mraidhost
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+                    <a href="#" class="btn btn-primary" style="display: none;">Get Started</a>
+                    
+                    <div class="mobile-menu-btn">
+                        <div class="hamburger"></div>
+                        <div class="hamburger"></div>
+                        <div class="hamburger"></div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Mobile Navigation -->
-        <div class="mobile-menu md:hidden fixed inset-0 top-16 bg-gray-900 bg-opacity-95 backdrop-blur-lg">
-            <div class="flex flex-col items-center justify-center h-full space-y-8">
-                <a href="#features" class="text-2xl text-gray-300 hover:text-white transition-colors" onclick="toggleMobileMenu()">Features</a>
-                <a href="#pricing" class="text-2xl text-gray-300 hover:text-white transition-colors" onclick="toggleMobileMenu()">Pricing</a>
-                <a href="#testimonials" class="text-2xl text-gray-300 hover:text-white transition-colors" onclick="toggleMobileMenu()">Reviews</a>
-                <a href="#contact" class="text-2xl text-gray-300 hover:text-white transition-colors" onclick="toggleMobileMenu()">Contact</a>
-                <a href="#" class="btn-primary text-lg px-8 py-4" onclick="toggleMobileMenu()">
-                    <i class="fas fa-rocket"></i>
-                    Get Started
-                </a>
-            </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#" class="btn btn-primary">Get Started</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-16 grid-bg overflow-hidden">
-        <!-- Floating Elements -->
-        <div class="float-element w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 top-20 left-10"></div>
-        <div class="float-element w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-500 top-32 right-20"></div>
-        <div class="float-element w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 bottom-32 left-32"></div>
-
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="fade-in">
-                <div class="inline-flex items-center px-4 py-2 bg-white bg-opacity-10 rounded-full mb-8">
-                    <i class="fas fa-shield-alt text-green-400 mr-2"></i>
-                    <span class="text-sm font-medium mono">TRUSTED SINCE 2021</span>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title fade-in">
+                    Premium hosting for <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">developers</span>
+                </h1>
+                <p class="hero-subtitle fade-in fade-in-delay-1">
+                    Lightning-fast deployment, 99.99% uptime, and enterprise-grade security. 
+                    Build and deploy your applications with confidence.
+                </p>
+                <div class="hero-buttons fade-in fade-in-delay-2">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-rocket" style="margin-right: 0.5rem;"></i>
+                        Start Free Trial
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-play" style="margin-right: 0.5rem;"></i>
+                        Watch Demo
+                    </a>
                 </div>
-            </div>
-
-            <h1 class="hero-title text-5xl md:text-6xl lg:text-7xl font-black mb-6 fade-in delay-1">
-                Infrastructure for<br>
-                <span class="gradient-text">developers who ship</span>
-            </h1>
-
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed fade-in delay-2">
-                Lightning-fast hosting with <span class="text-blue-400 font-semibold">99.99% uptime</span>. 
-                Deploy your apps in seconds with our developer-first platform that scales with your dreams.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 fade-in delay-3">
-                <a href="#" class="btn-primary text-lg px-8 py-4">
-                    <i class="fas fa-rocket"></i>
-                    Start Building
-                </a>
-                <a href="#" class="btn-secondary text-lg px-8 py-4">
-                    <i class="fas fa-play"></i>
-                    Watch Demo
-                </a>
-            </div>
-
-            <!-- Code Demo -->
-            <div class="max-w-3xl mx-auto fade-in delay-4">
-                <div class="code-block">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex space-x-2">
-                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                            <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                        </div>
-                        <span class="text-xs text-gray-400">Terminal</span>
+                
+                <!-- Stats -->
+                <div class="stats fade-in fade-in-delay-3">
+                    <div class="stat-item">
+                        <span class="stat-number">99.99%</span>
+                        <span class="stat-label">Uptime SLA</span>
                     </div>
-                    <div class="terminal-line">
-                        <span class="prompt">$</span> npm install -g k0mraid-cli
+                    <div class="stat-item">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Developers</span>
                     </div>
-                    <div class="terminal-line">
-                        <span class="prompt">$</span> k0mraid init awesome-app
+                    <div class="stat-item">
+                        <span class="stat-number">&lt;100ms</span>
+                        <span class="stat-label">Response Time</span>
                     </div>
-                    <div class="terminal-line">
-                        <span class="prompt">$</span> k0mraid deploy --production
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support</span>
                     </div>
-                    <div class="text-green-400 mt-4 flex items-center">
-                        <i class="fas fa-check-circle mr-2"></i>
-                        ✓ Deployed in 8.2s → https://awesome-app.k0mraid.dev
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-16 border-t border-gray-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="stat-number">99.99%</div>
-                    <div class="text-gray-400 text-sm">Uptime SLA</div>
-                </div>
-                <div>
-                    <div class="stat-number">2.5M+</div>
-                    <div class="text-gray-400 text-sm">Deployments</div>
-                </div>
-                <div>
-                    <div class="stat-number">&lt;100ms</div>
-                    <div class="text-gray-400 text-sm">Response Time</div>
-                </div>
-                <div>
-                    <div class="stat-number">24/7</div>
-                    <div class="text-gray-400 text-sm">Support</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl md:text-5xl font-black mb-4">Built for developers</h2>
-                <p class="text-xl text-gray-400">Everything you need to scale from prototype to production</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="card group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-bolt text-white text-xl"></i>
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Why developers choose us</h2>
+            <p class="section-subtitle">
+                Everything you need to build, deploy, and scale your applications with confidence
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 group-hover:text-blue-400 transition-colors">Lightning Deploy</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">Deploy your apps in seconds with our optimized CI/CD pipeline. Git push and go live instantly.</p>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            Zero-downtime deployments
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            Automatic rollbacks
-                        </li>
-                    </ul>
+                    <h3 class="feature-title">Lightning Deploy</h3>
+                    <p class="feature-description">
+                        Deploy your applications in seconds with our optimized CI/CD pipeline. 
+                        Git push and go live instantly with zero downtime.
+                    </p>
                 </div>
-
-                <!-- Feature 2 -->
-                <div class="card group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 group-hover:text-green-400 transition-colors">Enterprise Security</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">Auto SSL, DDoS protection, and SOC 2 compliance built-in. Your data stays secure.</p>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            SSL certificates
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            DDoS protection
-                        </li>
-                    </ul>
+                    <h3 class="feature-title">Enterprise Security</h3>
+                    <p class="feature-description">
+                        Bank-level security with automatic SSL, DDoS protection, and SOC 2 compliance. 
+                        Your data and applications are always protected.
+                    </p>
                 </div>
-
-                <!-- Feature 3 -->
-                <div class="card group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-white text-xl"></i>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 group-hover:text-purple-400 transition-colors">Real-time Analytics</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">Monitor performance, track errors, and optimize with detailed metrics.</p>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            Performance metrics
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            Error tracking
-                        </li>
-                    </ul>
+                    <h3 class="feature-title">Global CDN</h3>
+                    <p class="feature-description">
+                        200+ edge locations worldwide ensure your content loads fast for users everywhere. 
+                        Automatic image optimization included.
+                    </p>
                 </div>
-
-                <!-- Feature 4 -->
-                <div class="card group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-red-600 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-globe text-white text-xl"></i>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 group-hover:text-yellow-400 transition-colors">Global CDN</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">Edge locations worldwide ensure your content loads fast everywhere.</p>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            200+ edge locations
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            Smart routing
-                        </li>
-                    </ul>
+                    <h3 class="feature-title">Real-time Analytics</h3>
+                    <p class="feature-description">
+                        Monitor performance, track errors, and optimize with detailed metrics. 
+                        Custom dashboards and alerts keep you informed.
+                    </p>
                 </div>
-
-                <!-- Feature 5 -->
-                <div class="card group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-code text-white text-xl"></i>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 group-hover:text-indigo-400 transition-colors">Full Stack Support</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">Node.js, Python, PHP, Go, Ruby, and more. Deploy any language.</p>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            20+ languages
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            Docker support
-                        </li>
-                    </ul>
+                    <h3 class="feature-title">Full Stack Support</h3>
+                    <p class="feature-description">
+                        Support for Node.js, Python, PHP, Go, Ruby, and more. 
+                        Deploy any language or framework with Docker support.
+                    </p>
                 </div>
-
-                <!-- Feature 6 -->
-                <div class="card group">
-                    <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-600 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-headset text-white text-xl"></i>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 group-hover:text-pink-400 transition-colors">Expert Support</h3>
-                    <p class="text-gray-400 leading-relaxed mb-4">24/7 support from engineers who understand your stack.</p>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            24/7 availability
-                        </li>
-                        <li class="flex items-center text-gray-300">
-                            <i class="fas fa-check text-green-400 mr-2"></i>
-                            Expert engineers
-                        </li>
-                    </ul>
+                    <h3 class="feature-title">Expert Support</h3>
+                    <p class="feature-description">
+                        24/7 support from engineers who understand your stack. 
+                        Get help when you need it from people who actually code.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-gray-900 bg-opacity-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl md:text-5xl font-black mb-4">Simple, transparent pricing</h2>
-                <p class="text-xl text-gray-400">Scale as you grow. No hidden fees, no surprises.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Starter Plan -->
-                <div class="card">
-                    <h3 class="text-2xl font-bold mb-4">Starter</h3>
-                    <div class="mb-6">
-                        <span class="text-4xl font-black">$0</span>
-                        <span class="text-gray-400">/month</span>
-                    </div>
-                    <p class="text-gray-400 mb-8">Perfect for side projects</p>
-                    <a href="#" class="btn-primary w-full justify-center mb-8">Start Free</a>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>3 Projects</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>100GB Bandwidth</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Community Support</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Pro Plan -->
-                <div class="card border-2 border-blue-500 transform scale-105 relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold">
-                        MOST POPULAR
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Pro</h3>
-                    <div class="mb-6">
-                        <span class="text-4xl font-black gradient-text">$29</span>
-                        <span class="text-gray-400">/month</span>
-                    </div>
-                    <p class="text-gray-400 mb-8">For growing businesses</p>
-                    <a href="#" class="btn-primary w-full justify-center mb-8">Start Pro Trial</a>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Unlimited Projects</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>1TB Bandwidth</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Priority Support</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Advanced Analytics</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Enterprise Plan -->
-                <div class="card">
-                    <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
-                    <div class="mb-6">
-                        <span class="text-4xl font-black">$99</span>
-                        <span class="text-gray-400">/month</span>
-                    </div>
-                    <p class="text-gray-400 mb-8">For large organizations</p>
-                    <a href="#" class="btn-secondary w-full justify-center mb-8">Contact Sales</a>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Unlimited Everything</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>10TB Bandwidth</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>24/7 Phone Support</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>SLA Guarantee</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-4xl md:text-5xl font-black mb-4">Loved by developers worldwide</h2>
-                <p class="text-xl text-gray-400">Join thousands of satisfied developers</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="card">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="font-bold text-white">SA</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold">Sarah Anderson</h4>
-                            <p class="text-sm text-gray-400">Senior Developer at TechCorp</p>
-                        </div>
-                    </div>
-                    <div class="flex mb-4">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-300">"k0mraidhost completely transformed our deployment process. What used to take hours now takes seconds."</p>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="card">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="font-bold text-white">MR</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold">Marcus Rodriguez</h4>
-                            <p class="text-sm text-gray-400">CTO at StartupLab</p>
-                        </div>
-                    </div>
-                    <div class="flex mb-4">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-300">"The uptime and performance are incredible. We've had zero downtime since switching to k0mraidhost."</p>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="card">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="font-bold text-white">EL</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold">Emily Liu</h4>
-                            <p class="text-sm text-gray-400">Full-stack Developer</p>
-                        </div>
-                    </div>
-                    <div class="flex mb-4">
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                        <i class="fas fa-star text-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-300">"As a freelancer, k0mraidhost gives me the confidence to deliver professional applications to my clients."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-br from-blue-900 bg-opacity-20 to-purple-900 bg-opacity-20 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="section-title text-4xl md:text-5xl font-black mb-6">Ready to ship faster?</h2>
-            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-                Join <span class="text-blue-400 font-semibold">50,000+</span> developers building the future on k0mraidhost. 
-                Start your free trial today.
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2 class="section-title">Simple, transparent pricing</h2>
+            <p class="section-subtitle">
+                Start free and scale as you grow. No hidden fees, no surprises.
             </p>
             
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <a href="#" class="btn-primary text-lg px-8 py-4">
-                    <i class="fas fa-rocket"></i>
-                    Start Free Trial
-                </a>
-                <a href="#" class="btn-secondary text-lg px-8 py-4">
-                    <i class="fas fa-calendar"></i>
-                    Schedule Demo
-                </a>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8 mt-16">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-check text-white text-xl"></i>
-                    </div>
-                    <p class="text-gray-300">No credit card required</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Starter</h3>
+                    <div class="pricing-price">$0</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>3 Projects</li>
+                        <li>100GB Bandwidth</li>
+                        <li>Basic Support</li>
+                        <li>Community Access</li>
+                        <li>SSL Certificates</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%;">Get Started</a>
                 </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-clock text-white text-xl"></i>
-                    </div>
-                    <p class="text-gray-300">5-minute setup</p>
+                
+                <div class="pricing-card featured">
+                    <h3 class="pricing-title">Pro</h3>
+                    <div class="pricing-price">$29</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited Projects</li>
+                        <li>1TB Bandwidth</li>
+                        <li>Priority Support</li>
+                        <li>Advanced Analytics</li>
+                        <li>Custom Domains</li>
+                        <li>Team Collaboration</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
                 </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-headset text-white text-xl"></i>
-                    </div>
-                    <p class="text-gray-300">Expert support included</p>
+                
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <div class="pricing-price">$99</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited Everything</li>
+                        <li>10TB+ Bandwidth</li>
+                        <li>24/7 Phone Support</li>
+                        <li>SLA Guarantee</li>
+                        <li>Dedicated Manager</li>
+                        <li>Custom Integration</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%;">Contact Sales</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-gray-900 bg-opacity-80 py-16">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <!-- Company Info -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-bolt text-white text-sm"></i>
-                        </div>
-                        <span class="text-lg font-bold mono">k0mraidhost</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">Premium web hosting for developers since 2021.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
                 </div>
-
-                <!-- Product Links -->
-                <div>
-                    <h4 class="font-semibold mb-4 text-sm uppercase tracking-wide">Product</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
-                    </ul>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
                 </div>
-
-                <!-- Company Links -->
-                <div>
-                    <h4 class="font-semibold mb-4 text-sm uppercase tracking-wide">Company</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
-                    </ul>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Community</a>
+                    <a href="#">Status Page</a>
+                    <a href="#">Bug Reports</a>
                 </div>
-
-                <!-- Legal Links -->
-                <div>
-                    <h4 class="font-semibold mb-4 text-sm uppercase tracking-wide">Legal</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">SLA</a></li>
-                    </ul>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Security</a>
+                    <a href="#">SLA</a>
                 </div>
             </div>
-
-            <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+            
+            <div class="footer-bottom">
                 <p>&copy; 2025 k0mraidhost. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const hamburger = document.querySelector('.hamburger');
-            
-            mobileMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            
-            // Prevent body scrolling when menu is open
-            if (mobileMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const hamburgers = document.querySelectorAll('.hamburger');
 
-        // Smooth scrolling for navigation links
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            
+            // Animate hamburger
+            hamburgers.forEach((line, index) => {
+                if (mobileMenu.classList.contains('active')) {
+                    if (index === 0) line.style.transform = 'rotate(45deg) translate(8px, 8px)';
+                    if (index === 1) line.style.opacity = '0';
+                    if (index === 2) line.style.transform = 'rotate(-45deg) translate(8px, -8px)';
+                } else {
+                    line.style.transform = '';
+                    line.style.opacity = '1';
+                }
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                hamburgers.forEach(line => {
+                    line.style.transform = '';
+                    line.style.opacity = '1';
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    // Close mobile menu if open
-                    const mobileMenu = document.querySelector('.mobile-menu');
-                    const hamburger = document.querySelector('.hamburger');
-                    
-                    if (mobileMenu.classList.contains('active')) {
-                        mobileMenu.classList.remove('active');
-                        hamburger.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
-                    
-                    // Scroll to target
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
         });
 
-        // Navbar scroll effect
+        // Navbar background on scroll
+        const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(2, 6, 23, 0.95)';
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.style.background = 'rgba(2, 6, 23, 0.9)';
             }
         });
+
+        // Show desktop CTA button on larger screens
+        function updateNavButton() {
+            const ctaButton = document.querySelector('.nav-actions .btn');
+            if (window.innerWidth >= 768) {
+                ctaButton.style.display = 'inline-flex';
+            } else {
+                ctaButton.style.display = 'none';
+            }
+        }
+
+        updateNavButton();
+        window.addEventListener('resize', updateNavButton);
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -942,45 +861,15 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.animationPlayState = 'running';
                 }
             });
         }, observerOptions);
 
-        // Observe cards for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-                observer.observe(card);
-            });
+        // Observe all elements with fade-in animation
+        document.querySelectorAll('.fade-in, .feature-card, .pricing-card').forEach(el => {
+            observer.observe(el);
         });
-
-        // Handle resize events
-        window.addEventListener('resize', () => {
-            // Close mobile menu on resize to desktop
-            if (window.innerWidth >= 768) {
-                const mobileMenu = document.querySelector('.mobile-menu');
-                const hamburger = document.querySelector('.hamburger');
-                
-                mobileMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Prevent double-tap zoom on iOS
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function (event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
     </script>
 </body>
 </html>
