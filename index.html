@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.    <title>k0mraidhost - Premium Web Hosting Since 2021</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>k0mraidhost - Premium Web Hosting Since 2021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+    <style>yle>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
         
         * {
@@ -36,11 +37,105 @@
                 background: var(--bg-gradient);
                 color: #fff;
             }
-        }ff;
+        }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Mobile-first responsive design fixes */
+        @media screen and (max-width: 480px) {
+            body {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem !important;
+                line-height: 1.3;
+            }
+            
+            .text-xl {
+                font-size: 1.1rem !important;
+            }
+            
+            .px-6 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            .py-32 {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+            
+            .gap-8 {
+                gap: 1rem !important;
+            }
+            
+            .mb-12 {
+                margin-bottom: 2rem !important;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1.5rem !important;
             }
         }
-          .mono {
-            font-family: 'JetBrains Mono', monospace;
+        
+        /* Tablet fixes */
+        @media screen and (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+                text-align: center;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .flex-row {
+                flex-direction: column !important;
+            }
+        }
+        
+        /* Prevent horizontal scrolling */
+        body, html {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
+        /* Fix container widths */
+        .max-w-7xl {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        /* Better button sizing on mobile */
+        @media screen and (max-width: 640px) {
+            .premium-btn, .secondary-btn {
+                width: 100%;
+                margin-bottom: 0.75rem;
+            }
+            
+            .hero-btn span {
+                padding: 0.75em 1.5em;
+                font-size: 1rem;
+            }
         }
         
         /* Enhanced Premium Buttons */
@@ -273,14 +368,23 @@
             transition: all 0.4s ease;
         }
         
-        /* Mobile Menu */
+        /* Mobile Menu Enhanced */
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 9999;
         }
         
         .mobile-menu.open {
             transform: translateX(0);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .mobile-menu {
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+            }
         }
         
         .hamburger {
@@ -288,6 +392,7 @@
             height: 24px;
             position: relative;
             cursor: pointer;
+            z-index: 10000;
         }
         
         .hamburger span {
@@ -310,6 +415,31 @@
         
         .hamburger.open span:nth-child(3) {
             transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Fix floating elements on mobile */
+        @media screen and (max-width: 768px) {
+            .float-animation {
+                display: none;
+            }
+            
+            .absolute {
+                position: relative !important;
+            }
+            
+            /* Make sure text is readable on mobile */
+            .bg-clip-text {
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            /* Fallback for browsers that don't support backdrop-filter */
+            @supports not (backdrop-filter: blur()) {
+                .backdrop-blur-sm, .backdrop-blur-lg {
+                    background: rgba(0, 0, 0, 0.9);
+                }
+            }
         }55, 255, 255, 0.1);        
         /* Enhanced Stats */
         .stat-number {
@@ -338,6 +468,22 @@
             overflow-x: auto;
             position: relative;
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        /* Mobile code block fixes */
+        @media screen and (max-width: 640px) {
+            .code-block {
+                padding: 1rem;
+                border-radius: 12px;
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .terminal-line {
+                font-size: 0.8rem !important;
+                white-space: nowrap;
+            }
         }
         
         .code-block::before {
@@ -993,43 +1139,82 @@
             </div>
             <div class="border-t border-gray-900 pt-8 text-center text-gray-600 text-sm">
                 <p>© 2025 k    <script>
-        // Mobile menu functionality
+        // Device detection and compatibility
+        const isMobile = window.innerWidth <= 768;
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        // Mobile menu functionality with better touch handling
         function toggleMobileMenu() {
             const mobileMenu = document.querySelector('.mobile-menu');
             const hamburger = document.querySelector('.hamburger');
             
-            mobileMenu.classList.toggle('open');
-            hamburger.classList.toggle('open');
+            if (mobileMenu && hamburger) {
+                mobileMenu.classList.toggle('open');
+                hamburger.classList.toggle('open');
+                
+                // Prevent body scrolling when menu is open
+                if (mobileMenu.classList.contains('open')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            }
         }
 
-        // Smooth scroll for navigation links
+        // Improved smooth scroll for mobile devices
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    if (mobileMenu && mobileMenu.classList.contains('open')) {
+                        toggleMobileMenu();
+                    }
+                    
+                    // Smooth scroll with better mobile support
+                    const yOffset = -80; // Account for fixed nav
+                    const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    
+                    window.scrollTo({
+                        top: y,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
 
-        // Enhanced navbar background on scroll
+        // Enhanced navbar for better mobile performance
         const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
+        let ticking = false;
+        
+        function updateNav() {
             if (window.scrollY > 50) {
                 nav.style.background = 'rgba(0, 0, 0, 0.95)';
                 nav.style.borderBottom = '1px solid rgba(102, 126, 234, 0.3)';
                 nav.style.backdropFilter = 'blur(30px)';
+                nav.style.webkitBackdropFilter = 'blur(30px)';
             } else {
                 nav.style.background = 'rgba(0, 0, 0, 0.9)';
                 nav.style.borderBottom = '1px solid rgba(102, 126, 234, 0.2)';
             }
-        });
+            ticking = false;
+        }
+        
+        function requestNavUpdate() {
+            if (!ticking) {
+                requestAnimationFrame(updateNav);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestNavUpdate, { passive: true });
 
-        // Enhanced intersection observer for animations
+        // Optimized intersection observer for mobile
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: isMobile ? 0.05 : 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1038,8 +1223,8 @@
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                     
-                    // Add staggered animation for cards
-                    if (entry.target.classList.contains('card')) {
+                    // Reduced animation for mobile performance
+                    if (entry.target.classList.contains('card') && !isMobile) {
                         const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100;
                         setTimeout(() => {
                             entry.target.style.opacity = '1';
@@ -1050,7 +1235,7 @@
             });
         }, observerOptions);
 
-        // Observe all cards and animated elements
+        // Observe elements with better mobile performance
         document.querySelectorAll('.card, .fade-in').forEach(element => {
             if (!element.classList.contains('delay-1') && !element.classList.contains('delay-2') && 
                 !element.classList.contains('delay-3') && !element.classList.contains('delay-4')) {
@@ -1061,55 +1246,74 @@
             }
         });
 
-        // Parallax effect for floating elements
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.float-animation');
-            
-            parallaxElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                element.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
+        // Disable resource-heavy animations on mobile for better performance
+        if (!isMobile && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // Parallax effect only on desktop
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.float-animation');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            }, { passive: true });
+        }
 
-        // Add hover effects to buttons
-        document.querySelectorAll('.premium-btn, .secondary-btn').forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px) scale(1.02)';
+        // Touch-friendly button interactions
+        if (isTouch) {
+            document.querySelectorAll('.premium-btn, .secondary-btn').forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.02)';
+                }, { passive: true });
+                
+                button.addEventListener('touchend', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                }, { passive: true });
             });
-            
-            button.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+        } else {
+            // Mouse interactions for desktop
+            document.querySelectorAll('.premium-btn, .secondary-btn').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
             });
-        });
+        }
 
-        // Add click ripple effect
+        // Optimized ripple effect
         document.querySelectorAll('.premium-btn, .secondary-btn, .card').forEach(element => {
             element.addEventListener('click', function(e) {
+                // Skip ripple on mobile for performance
+                if (isMobile) return;
+                
                 const ripple = document.createElement('div');
                 ripple.classList.add('ripple');
                 
                 const rect = this.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
                 
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-                
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 0.6s linear';
-                ripple.style.pointerEvents = 'none';
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${e.clientX - rect.left - size / 2}px;
+                    top: ${e.clientY - rect.top - size / 2}px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
                 
                 this.style.position = 'relative';
                 this.style.overflow = 'hidden';
                 this.appendChild(ripple);
                 
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
+                setTimeout(() => ripple.remove(), 600);
             });
         });
 
@@ -1125,7 +1329,7 @@
         `;
         document.head.appendChild(style);
 
-        // Counter animation for stats
+        // Counter animation with mobile optimization
         function animateCounters() {
             const counters = document.querySelectorAll('.stat-number');
             
@@ -1138,7 +1342,7 @@
                     let count = 0;
                     const targetNum = parseFloat(target.replace(/[^\d.]/g, ''));
                     const suffix = target.replace(/[\d.]/g, '');
-                    const increment = targetNum / 100;
+                    const increment = targetNum / (isMobile ? 50 : 100); // Faster on mobile
                     
                     const timer = setInterval(() => {
                         count += increment;
@@ -1148,13 +1352,13 @@
                         } else {
                             counter.textContent = Math.floor(count) + suffix;
                         }
-                    }, 20);
+                    }, isMobile ? 40 : 20);
                 }
             });
         }
 
-        // Trigger counter animation when stats section is visible
-        const statsSection = document.querySelector('.stat-number').closest('section');
+        // Stats animation trigger
+        const statsSection = document.querySelector('.stat-number')?.closest('section');
         if (statsSection) {
             const statsObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1167,6 +1371,29 @@
             
             statsObserver.observe(statsSection);
         }
+
+        // Handle orientation change on mobile
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                window.scrollTo(0, window.scrollY);
+            }, 100);
+        });
+
+        // Prevent zoom on iOS
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(e) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
     </script>      card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(card);
         });
