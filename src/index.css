@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 4%;
+    --foreground: 210 20% 96%;
+    --card: 210 18% 6%;
+    --card-foreground: 210 20% 96%;
+    --popover: 210 18% 6%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 108 100% 54%;
+    --primary-foreground: 210 20% 4%;
+    --secondary: 210 15% 10%;
+    --secondary-foreground: 210 20% 96%;
+    --muted: 210 15% 15%;
+    --muted-foreground: 210 10% 65%;
+    --accent: 108 100% 54%;
+    --accent-foreground: 210 20% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 10% 20%;
+    --input: 210 10% 20%;
+    --ring: 108 100% 54%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Typography */
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-mono {
+  font-family: 'Space Mono', monospace;
+}
+
+/* Grid Background */
+.grid-bg {
+  background-color: #07080A;
+  background-image: 
+    linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Neon Glow */
+.neon-glow {
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.3),
+              0 0 40px rgba(57, 255, 20, 0.2),
+              0 0 60px rgba(57, 255, 20, 0.1);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5),
+               0 0 20px rgba(57, 255, 20, 0.3);
+}
+
+/* Accent Color */
+.accent-green {
+  color: #39FF14;
+}
+
+.bg-accent-green {
+  background-color: #39FF14;
+}
+
+.border-accent-green {
+  border-color: #39FF14;
+}
+
+/* Image Panel */
+.image-panel {
+  border: 1px solid rgba(244, 246, 248, 0.14);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Info Card */
+.info-card {
+  background: rgba(11, 14, 18, 0.65);
+  border: 1px solid rgba(244, 246, 248, 0.1);
+}
+
+/* Footer Strip */
+.footer-strip {
+  background: #0B0E12;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-accent-green text-black font-semibold px-6 py-3 transition-all duration-200;
+}
+
+.btn-primary:hover {
+  @apply transform -translate-y-0.5 scale-[1.02];
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+}
+
+/* Section Base */
+.section-pinned {
+  @apply relative w-full overflow-hidden;
+}
+
+/* Vignette Overlay - applied to background only */
+.vignette {
+  position: relative;
+}
+
+.vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grain Overlay */
+.grain-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1000;
+  mix-blend-mode: overlay;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07080A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #39FF14;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2dd410;
+}
+
+/* Spec Item */
+.spec-item {
+  @apply flex items-center gap-2 text-sm text-gray-400;
+}
+
+.spec-item::before {
+  content: '';
+  @apply w-1.5 h-1.5 bg-accent-green rounded-full;
+}
+
+/* Card Hover */
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  @apply transform -translate-y-1;
+  border-color: rgba(57, 255, 20, 0.3);
+}
+
+/* Navigation */
+.nav-link {
+  @apply relative text-sm font-medium text-gray-400 transition-colors duration-200;
+}
+
+.nav-link:hover {
+  @apply text-white;
+}
+
+.nav-link.active {
+  @apply text-white;
+}
+
+.nav-link.active::after {
+  content: '';
+  @apply absolute -bottom-1 left-0 w-full h-0.5 bg-accent-green;
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Feature Card */
+.feature-card {
+  @apply p-6 border border-white/10 bg-white/5 backdrop-blur-sm;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+  @apply p-5 border border-white/10 bg-white/5;
+}
+
+/* Contact Card */
+.contact-card {
+  @apply p-6 border border-white/10 bg-white/5 text-center;
+}
+
+/* Animation Utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
